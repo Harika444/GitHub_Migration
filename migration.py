@@ -21,16 +21,6 @@ def get_pullRequests():
 #y = get_pullRequests()
 #print(y.json())
 
-def get_issues():
-    session = requests.Session()
-    session.auth = (source_username, source_password)
-    issues = requests.get('https://ec2-34-213-47-149.us-west-2.compute.amazonaws.com/api/v3/repos/capgemini/test/issues', auth=session.auth, verify=False)
-    #print(x.json())
-    return issues
-
-#y = get_issues()
-#print(y.json())
-
 def get_milestones():
     session = requests.Session()
     session.auth = (source_username, source_password)
@@ -69,21 +59,6 @@ def create_github_milestone( js):
         print ('Could not create milestones' + str(r.content) )
 
 
-
-def create_github_label(label):
-    url = 'https://api.github.com/repos/%s/%s/labels' % (REPO_OWNER, REPO_NAME)
-    session = requests.Session()
-    session.auth = (des_username, des_password)
-    labels = {'name': label[0]['name']}
-    r = session.post(url, json.dumps(labels))
-    if r.status_code == 201:
-        print ('Successfully created labels')
-    else:
-        print ('Could not create labels' + str(r.content) )
-
-#y = get_labels()
-#print(y.json())
-#create_github_label(y.json())
 
 def create_github_label(label):
     url = 'https://api.github.com/repos/%s/%s/labels' % (REPO_OWNER, REPO_NAME)
